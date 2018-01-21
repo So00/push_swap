@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 02:53:53 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/21 05:34:41 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 #define pb 10
 
 int		ft_get_push_ar(int ac, char **av, int **ar);
-int		ft_is_list_sort(int *a, int a_len);
+int		ft_is_sort_checker(int *a, int a_len);
 int		free_all(int **a, int **b, char **tmp);
+int		ft_sort_easy(int *a, int *b, int *a_len, int *b_len);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);

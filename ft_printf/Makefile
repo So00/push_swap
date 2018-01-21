@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/01/20 22:32:12 by atourner         ###   ########.fr        #
+#    Updated: 2018/01/21 05:26:34 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,11 +115,11 @@ all : $(NAME)
 	@gcc $(FLAGS) -o $@ -c $< -Iincludes
 
 $(NAME) : $(COMP_NAME)
-	@echo "\033[0;34mCompilation des fichiers finies\033[0m"
+	@echo "\033[0;35mCompilation des fichiers finies\033[0m"
 	@echo "\033[0;33mCompilation de la librairie\033[0m"
 	@ar rc $(NAME) $(COMP_NAME)
 	@ranlib $(NAME)
-	@echo "\033[0;34mCompilation de la librairie finie\033[0m"
+	@echo "\033[0;35mCompilation de la librairie finie\033[0m"
 
 clean :
 	@echo "\033[0;31mSuppression des fichiers compilés\033[0m"

@@ -6,14 +6,22 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:41:12 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 00:08:25 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/21 04:18:19 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-const char	g_move[11][4] = {{"pa\0"},{"sa\0"},{"ra\0"},{"rra\0"},
-	{"rr\0"},{"ss\0"},{"rrr\0"},{"rrb\0"},{"rb\0"},{"sb\0"},{"pb\0"}};
+int			free_all(int **a, int **b, char **tmp)
+{
+	if (a)
+		free(*a);
+	if (b)
+		free(*b);
+	if (tmp)
+		free(*tmp);
+	return (0);
+}
 
 void		ft_initialize_function(void (*apply_move[11])())
 {
