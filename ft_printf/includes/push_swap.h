@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 05:34:41 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/21 06:19:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@
 #define sb 9
 #define pb 10
 
+typedef struct		s_push_ar
+{
+	int		*ar;
+	int		len;
+}					t_push_ar;
+
 int		ft_get_push_ar(int ac, char **av, int **ar);
 int		ft_is_sort_checker(int *a, int a_len);
 int		free_all(int **a, int **b, char **tmp);
-int		ft_sort_easy(int *a, int *b, int *a_len, int *b_len);
+int		ft_sort_easy(t_push_ar *a, t_push_ar *b);
+int		is_list_sort(int *act, int len, int descending);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);

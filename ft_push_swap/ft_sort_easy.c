@@ -6,13 +6,22 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 05:32:52 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/21 06:27:47 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_sort_easy(int *a, int *b, int *a_len, int *b_len)
+int		search_closest(t_push_ar *a)
 {
+	
+}
+
+int		ft_sort_easy(t_push_ar *a, t_push_ar *b)
+{
+	while (!is_list_sort(a->ar, a->len, 0))
+	{
+
+	}
 	return (1);
 }
