@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:01:14 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 01:51:02 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/21 01:33:34 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 extern const char g_move[11][4];
 
-int			free_all(int **a, int **b, char **tmp)
+static int	free_all(int **a, int **b, char **tmp)
 {
-	if (a)
-		free(*a);
-	if (b)
-		free(*b);
+	free(*a);
+	free(*b);
 	if (tmp)
 		free(*tmp);
 	return (0);
 }
 
-static int	ft_end_test(int **a, int **b, int a_len, int b_len)
+int			ft_end_test(int **a, int **b, int a_len, int b_len)
 {
 	int		ret;
 
@@ -46,7 +44,7 @@ int			ft_is_list_sort(int	*a, int a_len)
 	int		*b;
 	int		b_len;
 	int		act;
-	void	(*apply_move[11])(int , int , int *, int *);
+	void	(*apply_move[11])(int **a, int **b, int *a_len, int *b_len);
 
 	if (!(b = (int*)malloc(sizeof(int) * a_len)))
 		return (0);
