@@ -1,0 +1,26 @@
+Si jamais on peut direct inverser les premiers nombre :
+5, 4, 0, 1, 2
+le faire.
+On a :
+4, 5, 0, 1, 2
+Si on trouve, deux listes triées, en l'occurence :
+4, 5 et 0, 1, 2
+Il ne reste qu'à rr dans un sens ou l'autres et s'est trié.
+Sinon si on a :
+4, 2, 0, 5, 1
+Le mieux à faire et de séparer en deux avec un chiffre médiant comme 2, et mettre tous ces chiffres dans pile b:
+ra
+a: 2, 0, 5, 1, 4
+b: 
+pb:
+a: 0, 5, 1, 4
+b: 2
+pb
+a: 5, 1, 4
+b: 0, 2
+rr
+a: 1, 4, 5
+b: 0, 2
+pb:
+a: 4, 5
+b: 1, 0, 2
