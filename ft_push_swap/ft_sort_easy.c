@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 09:52:23 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:44:38 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,47 +38,56 @@ void	what_print(int print)
 		ft_printf("pb\n");
 }
 
-int		search_closest(t_push_ar *a, t_push_ar *b, void (*move[11])())
+void	push_first_sort_b(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
-	int		len;
-	int		len_end;
-
-	len = -1;
-	while (++len < a->len - 1 && a->ar[len] < a->ar[len + 1])
-		;
-	if (len < a->len / 2 && a->ar[len] > a->ar[a->len - 1])
-		return (ra);
-	if (len > a->len/2 && a->ar[len] > a->ar[a->len - 1])
-		return (rra);
-	len_end = 1;
-	while (a->ar[a->len - len_end] > a->ar[len])
-		len_end++;
-	if (len >= len_end)
+	while (a->ar[0] < a->ar[1])
 	{
-		while (len_end--)
+		move[pb](&a->ar, &b->ar, &a->len, &b->len);
+		what_print(pb);
+	}
+		move[pb](&a->ar, &b->ar, &a->len, &b->len);
+		what_print(pb);
+}
+
+void	push_all_in_reverse(t_push_ar *a, t_push_ar *b, void (*move[11])())
+{
+	while (a->ar[0] > a->ar[a->len - 1])
+	{
+		move[rra](&a->ar, &b->ar, &a->len, &b->len);
+		what_print(rra);
+	}
+}
+
+void	ft_fill_a(t_push_ar *a, t_push_ar *b, void (*move[11])())
+{
+	while (b->len)
+	{
+		while (a->ar[a->len - 1] > b->ar[0])
 		{
 			move[rra](&a->ar, &b->ar, &a->len, &b->len);
 			what_print(rra);
 		}
-		while (a->ar[len_end - 1] > a->ar[len])
-		{
-			move[pa](&a->ar, &b->ar, &a->len, &b->len);
-			what_print(pb);
-		}
+		move[pa](&a->ar, &b->ar, &a->len, &b->len);
+		what_print(pa);
 	}
-	return (rra);
 }
 
-int		ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
+void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
 	int		tmp;
 
 	if (!is_list_sort(a->ar, a->len, 0))
 	{
-		move[(tmp = search_closest(a, b, move))](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(tmp);
+		if (a->ar[0] > a->ar[a->len - 1])
+			push_all_in_reverse(a, b, move);
+		if (!b->len && order_in_rev(a->ar, a->len))
+			push_first_sort_b(a, b, move);
+		if (b->len)
+		{
+			ft_fill_a(a, b, move);
+			push_all_in_reverse(a, b, move);
+		}
 	}
 	for (int i = 0; i < a->len; i++)
 		ft_printf("tab[%d] = %d\n",i, a->ar[i]);
-	return (1);
 }

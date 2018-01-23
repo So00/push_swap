@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 10:32:19 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/23 17:05:53 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				is_list_sort(int *act, int len, int descending)
 	return (1);
 }
 
-static int		order_in_rev(int *act, int len)
+int				order_in_rev(int *act, int len)
 {
 	int		stop_asc;
 
@@ -49,7 +49,7 @@ static void		solve(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		tmp;
 	int		med;
 
-	while (b->len || !is_list_sort(a->ar, a->len, 0))
+	if (b->len || !is_list_sort(a->ar, a->len, 0))
 	{
 		if (!b->len && order_in_rev(a->ar, a->len))
 			ft_sort_easy(a, b, move);
