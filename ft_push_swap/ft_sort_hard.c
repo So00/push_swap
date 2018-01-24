@@ -6,11 +6,12 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/24 04:48:29 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/24 07:19:11 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 int		is_b_sort(t_push_ar *b)
 {
 	int		i;
@@ -51,8 +52,8 @@ void	ft_search_low_med(t_push_ar *a, t_push_ar *b, int nb_srch,
 	if (i < a->len / 2)
 		while (a->ar[0] > nb_srch)
 		{
-		move[ra](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(ra);
+			move[ra](&a->ar, &b->ar, &a->len, &b->len);
+			what_print(ra);
 		}
 	else
 		while (a->ar[0] > nb_srch)
@@ -74,6 +75,29 @@ void	ft_search_low_med(t_push_ar *a, t_push_ar *b, int nb_srch,
 	}
 }
 
+int		ft_search(t_push_ar *to_chr, int nb_srch)
+{
+	int		i;
+
+	i = 0;
+	while (i < to_chr->len)
+	{
+		
+	}
+}
+
+void	ft_fit_b(t_push_ar *a, t_push_ar *b, void (*move[11])())
+{
+	int		move_need;
+
+	if (a->ar[0] > b->max || a->ar[0] < b->min)
+	{
+		move_need = ft_search(b, a->ar[0]);
+		while ((b->ar[0] != b->max && a->ar[0] > max) || (b->ar[0] != b->min && a->ar[0] < min))
+			move[move_need](&a->ar, &b->ar, &a->len, &b->len);
+	}
+}
+
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
 	int		med;
@@ -83,6 +107,7 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 //	while (!is_list_sort(b->ar, b->len, 1) && a->len > b->len)
 //	{
 		ft_search_low_med(a, b, med, move);
+		ft_fit_b(a, b, move);
 		if (!is_list_sort(a->ar, a->len, 0))
 		{
 			move[pb](&a->ar, &b->ar, &a->len, &b->len);
