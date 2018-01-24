@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/23 17:05:53 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/24 04:48:33 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static void		solve(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		tmp;
 	int		med;
 
-	if (b->len || !is_list_sort(a->ar, a->len, 0))
-	{
-		if (!b->len && order_in_rev(a->ar, a->len))
-			ft_sort_easy(a, b, move);
-	}
+	if (order_in_rev(a->ar, a->len))
+		ft_sort_easy(a, b, move);
+	else
+		ft_sort_hard(a, b, move);
+
 }
 
 int				main(int ac, char **av)
@@ -74,7 +74,10 @@ int				main(int ac, char **av)
 			free(a.ar);
 			return (0);
 		}
-		solve(&a, &b, move);
+		if (!is_list_sort(a.ar, a.len, 0))
+			solve(&a, &b, move);
+	free(a.ar);
+	free(b.ar);
 	}
 	return (0);
 }
