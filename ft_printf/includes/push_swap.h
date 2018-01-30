@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/24 03:27:10 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/30 16:51:07 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		free_all(int **a, int **b, char **tmp);
 int		is_list_sort(int *act, int len, int descending);
 int		order_in_rev(int *act, int len);
 int		ft_get_med(t_push_ar *a);
+int		ft_get_min(t_push_ar *a, int len);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);
@@ -57,6 +58,7 @@ void	ft_initialize_function(void (*apply_move[11])
 		(int **a, int **b, int *a_len, int *b_len));
 void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])());
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	what_print(int print);
+void	do_move(int print, t_push_ar *a, t_push_ar *b, void (*move[11])());
+void	ft_sort_bubble(t_push_ar *a, t_push_ar *b, void (*move[11])());
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/24 07:19:15 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:57:54 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int				order_in_rev(int *act, int len)
 {
 	int		stop_asc;
 
-	stop_asc = -1;
-	while (++stop_asc < len - 1 && act[stop_asc] < act[stop_asc + 1])
-		;
-	while (++stop_asc < len - 1 && act[stop_asc] < act[stop_asc + 1])
-		;
-	if (stop_asc == len - 1)
+	stop_asc = 0;
+	while (stop_asc < len - 1 && act[stop_asc] < act[stop_asc + 1])
+		stop_asc++;
+	while (act[len] > act[len - 1])
+		len--;
+	if (stop_asc == len - 1 || stop_asc == len)
 		return (1);
 	return (0);
 }
@@ -49,11 +49,12 @@ static void		solve(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		tmp;
 	int		med;
 
-	if (order_in_rev(a->ar, a->len))
+	if (order_in_rev(a->ar, a->len - 1))
 		ft_sort_easy(a, b, move);
+	else if (a->len <= 6)
+		ft_sort_bubble(a, b, move);
 	else
 		ft_sort_hard(a, b, move);
-
 }
 
 int				main(int ac, char **av)
@@ -70,14 +71,15 @@ int				main(int ac, char **av)
 	else
 	{
 		if (!(b.ar = (int*)malloc(sizeof(int) * a.len)))
-		{
 			free(a.ar);
-			return (0);
-		}
-		if (!is_list_sort(a.ar, a.len, 0))
+		else if (!is_list_sort(a.ar, a.len, 0))
+		{
 			solve(&a, &b, move);
-	free(a.ar);
-	free(b.ar);
+			free(a.ar);
+			free(b.ar);
+		}
+		else
+			ft_printf("\n");
 	}
 	return (0);
 }

@@ -6,94 +6,48 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/23 22:46:12 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:43:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	what_print(int print)
+int		ft_search_stop_asc(t_push_ar *a)
 {
-	if (!print)
-		ft_printf("pa\n");
-	else if (print == 1)
-		ft_printf("sa\n");
-	else if (print == 2)
-		ft_printf("ra\n");
-	else if (print == 3)
-		ft_printf("rra\n");
-	else if (print == 4)
-		ft_printf("rr\n");
-	else if (print == 5)
-		ft_printf("ss\n");
-	else if (print == 6)
-		ft_printf("rrr\n");
-	else if (print == 7)
-		ft_printf("rrb\n");
-	else if (print == 8)
-		ft_printf("rb\n");
-	else if (print == 9)
-		ft_printf("sb\n");
-	else
-		ft_printf("pb\n");
+	int		search;
+
+	search = 0;
+	while (a->ar[search] < a->ar[search + 1])
+		search++;
+	return (search);
 }
 
-void	push_first_sort_b(t_push_ar *a, t_push_ar *b, void (*move[11])())
+int		ft_cmp(int a, int b)
 {
-	int		tmp;
-
-	tmp = a->ar[0];
-	while (a->ar[0] < a->ar[1])
-	{
-		move[pb](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(pb);
-	}
-		move[pb](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(pb);
-}
-
-void	push_all_in_reverse(t_push_ar *a, t_push_ar *b, void (*move[11])())
-{
-	while (a->ar[0] > a->ar[a->len - 1])
-	{
-		move[rra](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(rra);
-	}
-}
-
-void	ft_fill_a(t_push_ar *a, t_push_ar *b, void (*move[11])())
-{
-	while (b->len)
-	{
-		while (a->ar[a->len - 1] > b->ar[0] && b->ar[0] > a->ar[0])
-		{
-			move[rra](&a->ar, &b->ar, &a->len, &b->len);
-			what_print(rra);
-		}
-		if (a->ar[0] > a->ar[1] && a->len != 1)
-		{
-			move[sa](&a->ar, &b->ar, &a->len, &b->len);
-			what_print(sa);
-		}
-		move[pa](&a->ar, &b->ar, &a->len, &b->len);
-		what_print(pa);
-	}
+	if (a > b)
+		return (1);
+	return (0);
 }
 
 void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
-	int		tmp;
+	int		stop_asc;
 
-	if (!is_list_sort(a->ar, a->len, 0))
+	stop_asc = ft_search_stop_asc(a);
+	if (a->ar[stop_asc] < a->ar[a->len - 1])
 	{
-		if (a->ar[0] > a->ar[a->len - 1])
-			push_all_in_reverse(a, b, move);
-		if (!b->len && order_in_rev(a->ar, a->len))
-			push_first_sort_b(a, b, move);
-		if (b->len)
-		{
-			ft_fill_a(a, b, move);
-			push_all_in_reverse(a, b, move);
-		}
+		while (stop_asc-- != -1)
+			do_move(pb, a, b, move);
+		while (b->len)
+			if (b->len && ft_cmp(a->ar[0], b->ar[0]))
+				do_move(pa, a, b, move);
+			else
+				do_move(ra, a, b, move);
 	}
+	if (stop_asc > a->len - stop_asc - 2)
+		while (!is_list_sort(a->ar, a->len, 0))
+			do_move(rra, a, b, move);
+	else
+		while (!is_list_sort(a->ar, a->len, 0))
+			do_move(ra, a, b, move);
 }
