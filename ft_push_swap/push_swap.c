@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/30 15:57:54 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/31 16:30:40 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int				is_list_sort(int *act, int len, int descending)
 	i = -1;
 	if (descending)
 	{
-		while (++i < len - 1)
+		while (++i < len)
 			if (act[i] < act[i + 1])
 				return (0);
 		return (1);
 	}
-	while (++i < len - 1)
+	while (++i < len)
 		if (act[i] > act[i + 1])
 			return (0);
 	return (1);

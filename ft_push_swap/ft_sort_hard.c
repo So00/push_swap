@@ -6,49 +6,105 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/30 14:17:45 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/31 16:44:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-
-void	ft_search_low_med(t_push_ar *a, t_push_ar *b, int nb_srch,
-		void (*move[11])())
+int		is_still_med(t_push_ar *act, int med, int superior)
 {
 	int		i;
 
 	i = 0;
-	while (a->ar[i] > nb_srch)
+	while (i < act->len)
+	{
+		if (!superior && act->ar[i] <= med)
+			return (1);
+		if (superior && act->ar[i] >= med)
+			return (1);
 		i++;
-	if (i < a->len / 2)
-		while (a->ar[0] > nb_srch)
+	}
+	return (0);
+}
+void	push_med_a(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med[2])
+{
+	while (is_still_med(b, med[0], 1))
+		if (b->ar[0] >= med[0])
+			do_move(pa, a, b, move);
+		else if (b->ar[0] == med[1])
+		{
+			do_move(pa, a, b, move);
 			do_move(ra, a, b, move);
-	else
-		while (a->ar[0] > nb_srch)
-			do_move(rra, a, b, move);
-	if (!b->len)
-	{
-		b->min = a->ar[0];
-		b->max = a->ar[0];
-	}
-	else
-	{
-		if (b->min > a->ar[0])
-			b->min = a->ar[0];
-		if (b->max < a->ar[0])
-			b->max = a->ar[0];
-	}
+			med[1] = ft_get_min(b, b->len);
+		}
+		else
+			do_move(rb, a, b, move);
 }
 
+void	push_med_b(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med)
+{
+	while (is_still_med(a, med, 0))
+		if (a->ar[0] <= med)
+			do_move(pb, a, b, move);
+		else
+			do_move(ra, a, b, move);
+}
 
+void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
+		int all_med[50000])
+{
+	int		med[2];
+
+	med[0] = ft_get_highest(b);
+	med[1] = ft_get_min(b, b->len);
+	push_med_a(a, b, move, med);
+	all_med[++all_med[0]] = a->ar[0];
+}
 
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
 	int		med;
-	int		tmp;
+	int		all_med[500000];
 
 	med = ft_get_med(a);
-	ft_printf("%d\n", med);
+	push_med_b(a, b, move, med);
+	all_med[1] = a->ar[a->len - 1];
+	all_med[2] = a->ar[0];
+	all_med[0] = 2;
+	while (b->len > 3)
+		ft_len(a, b, move, all_med);
+	ft_sort_three(a, b, move);
+	while (a->ar[0] != all_med[2] && --all_med[0])
+	{
+		while (a->ar[0] != all_med[all_med[0]])
+			do_move(pb, a, b, move);
+		ft_sort_three(a, b, move);
+	}
+	while (b->ar[0] != all_med[1])
+		do_move(pb, a, b, move);
+	all_med[2] = a->ar[0];
+	while (b->len > 3)
+		ft_len(a, b, move, all_med);
+	ft_sort_three(a, b, move);
+	while (a->ar[0] != all_med[2] && --all_med[0])
+	{		ft_printf("med 0 %d med %d len %d", all_med[0], all_med[all_med[0]], b->len);
+		ft_printf("\nA_LIST\n");
+		for (int i = 0; i < a->len; i++)
+			ft_printf("%d\n", a->ar[i]);
+		ft_printf("\nB_LIST\n");
+		for (int i = 0; i < b->len; i++)
+			ft_printf("%d\n", b->ar[i]);
+		ft_printf("\n");
+
+		while (a->ar[0] != all_med[all_med[0]])
+			do_move(pb, a, b, move);
+		ft_sort_three(a, b, move);
+	}
+	ft_printf("\nA_LIST\n");
+	for (int i = 0; i < a->len; i++)
+		ft_printf("%d\n", a->ar[i]);
+	ft_printf("\nB_LIST\n");
+	for (int i = 0; i < b->len; i++)
+		ft_printf("%d\n", b->ar[i]);
 }
