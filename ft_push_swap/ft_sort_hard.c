@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 16:44:05 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:22:51 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
 	int		med;
-	int		all_med[500000];
+	int		*all_med;
 
+	if (!(all_med = (int*)malloc(sizeof(int) * a->len / 3)))
+			return ;
 	med = ft_get_med(a);
 	push_med_b(a, b, move, med);
 	all_med[1] = a->ar[a->len - 1];
@@ -88,23 +90,9 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 		ft_len(a, b, move, all_med);
 	ft_sort_three(a, b, move);
 	while (a->ar[0] != all_med[2] && --all_med[0])
-	{		ft_printf("med 0 %d med %d len %d", all_med[0], all_med[all_med[0]], b->len);
-		ft_printf("\nA_LIST\n");
-		for (int i = 0; i < a->len; i++)
-			ft_printf("%d\n", a->ar[i]);
-		ft_printf("\nB_LIST\n");
-		for (int i = 0; i < b->len; i++)
-			ft_printf("%d\n", b->ar[i]);
-		ft_printf("\n");
-
+	{
 		while (a->ar[0] != all_med[all_med[0]])
 			do_move(pb, a, b, move);
 		ft_sort_three(a, b, move);
 	}
-	ft_printf("\nA_LIST\n");
-	for (int i = 0; i < a->len; i++)
-		ft_printf("%d\n", a->ar[i]);
-	ft_printf("\nB_LIST\n");
-	for (int i = 0; i < b->len; i++)
-		ft_printf("%d\n", b->ar[i]);
 }
