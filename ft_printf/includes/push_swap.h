@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 13:38:35 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:51:09 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])());
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])());
 void	do_move(int print, t_push_ar *a, t_push_ar *b, void (*move[11])());
 void	ft_sort_bubble(t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])());
+void	ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])(),
+		int next_med);
 
 #endif

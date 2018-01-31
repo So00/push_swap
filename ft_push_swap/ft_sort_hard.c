@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 17:22:51 by atourner         ###   ########.fr       */
+/*   Updated: 2018/01/31 20:07:21 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		is_still_med(t_push_ar *act, int med, int superior)
 	}
 	return (0);
 }
+
 void	push_med_a(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med[2])
 {
 	while (is_still_med(b, med[0], 1))
@@ -52,14 +53,15 @@ void	push_med_b(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med)
 }
 
 void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
-		int all_med[50000])
+		int *all_med)
 {
 	int		med[2];
 
 	med[0] = ft_get_highest(b);
 	med[1] = ft_get_min(b, b->len);
 	push_med_a(a, b, move, med);
-	all_med[++all_med[0]] = a->ar[0];
+	all_med[0]++;
+	all_med[all_med[0]] = a->ar[0];
 }
 
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
@@ -67,32 +69,27 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		med;
 	int		*all_med;
 
-	if (!(all_med = (int*)malloc(sizeof(int) * a->len / 3)))
+	if (!(all_med = (int*)malloc(sizeof(int) * a->len)))
 			return ;
 	med = ft_get_med(a);
 	push_med_b(a, b, move, med);
 	all_med[1] = a->ar[a->len - 1];
 	all_med[2] = a->ar[0];
 	all_med[0] = 2;
-	while (b->len > 3)
+	while (b->len)
 		ft_len(a, b, move, all_med);
-	ft_sort_three(a, b, move);
-	while (a->ar[0] != all_med[2] && --all_med[0])
-	{
-		while (a->ar[0] != all_med[all_med[0]])
-			do_move(pb, a, b, move);
-		ft_sort_three(a, b, move);
-	}
-	while (b->ar[0] != all_med[1])
+//	while (a->ar[0] != all_med[2] && all_med[0])
+	ft_printf("MED 0 %d\n",all_med[0]);
+		ft_sort_three(a, b, move, all_med[--all_med[0]]);
+/*	while (b->ar[0] != all_med[1])
 		do_move(pb, a, b, move);
 	all_med[2] = a->ar[0];
-	while (b->len > 3)
+	while (b->len)
 		ft_len(a, b, move, all_med);
-	ft_sort_three(a, b, move);
+	ft_printf("ALL MED 0 %d\n", all_med[0]);
+	for (int i = 0; i < a->len; i++)
+		ft_printf("a %d\n", a->ar[i]);
 	while (a->ar[0] != all_med[2] && --all_med[0])
-	{
-		while (a->ar[0] != all_med[all_med[0]])
-			do_move(pb, a, b, move);
-		ft_sort_three(a, b, move);
-	}
+		ft_sort_three(a, b, move, all_med[all_med[0]]);*/
+	free(all_med);
 }
