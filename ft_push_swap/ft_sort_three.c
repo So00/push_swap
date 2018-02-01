@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 13:18:03 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 20:07:22 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/01 10:49:29 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ int			len_to_sort(t_push_ar *a, int next_med)
 void		push_end_a(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 		int next_med)
 {
-	int		bug;
-
-	bug = 0;
+	int bug = 0;
 	if (!b->len)
 		while (a->ar[0] != next_med && ++bug < 10)
 			do_move(ra, a, b, move);
 	else
 	{
-		while ((a->ar[0] != next_med || b->len) && bug < 10)
+		while (a->ar[0] != next_med)
 		{
 			if (!b->len || a->ar[0] < b->ar[0])
 				do_move(ra, a, b, move);
@@ -42,14 +40,12 @@ void		push_end_a(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 				do_move(pa, a, b, move);
 				do_move(ra, a, b, move);
 			}
-			++bug;
 		}
-	}
-	if (bug == 10)
-	{
-		ft_printf("blen %d alen %d next_med %d\n", b->len, a->len, next_med);
-		for (int i = 0; i < a->len; i++)
-			ft_printf("a %d\n", a->ar[i]);
+		if (b->len)
+		{
+			do_move(pa, a, b, move);
+			do_move(ra, a, b, move);
+		}
 	}
 }
 
@@ -62,7 +58,7 @@ void		ft_solve_three(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	}
 	else if (a->ar[0] > a->ar[1] && a->ar[1] < a->ar[2] && a->ar[0] < a->ar[2])
 		do_move(sa, a, b, move);
-	else if (b->ar[0] > b->ar[1] && b->ar[1] < b->ar[2] && b->ar[0] > b->ar[2])
+	else if (a->ar[0] > a->ar[1] && a->ar[1] < a->ar[2] && a->ar[0] > a->ar[2])
 		do_move(pb, a, b, move);
 	else
 	{
@@ -93,7 +89,4 @@ void		ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 			ft_solve_three(a, b, move);
 	}
 	push_end_a(a, b, move, next_med);
-	ft_printf("%d %d \n",next_med, a->len);
-	for (int i = 0; i < a->len; i++)
-		ft_printf("a %d  i %d\n", a->ar[i], i);
 }

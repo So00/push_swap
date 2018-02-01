@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 19:00:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 13:10:25 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/01 11:58:51 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ int			ft_get_highest(t_push_ar *a)
 		}
 		i++;
 	}
-	i = sort_ar[a->len - 3];
+	if (a->len >= 3)
+		i = sort_ar[a->len - 3];
+	else
+		i = sort_ar[0];
 	free(sort_ar);
 	return (i);
 }

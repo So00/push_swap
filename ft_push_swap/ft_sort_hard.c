@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 20:07:21 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/01 12:01:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 	med[0] = ft_get_highest(b);
 	med[1] = ft_get_min(b, b->len);
 	push_med_a(a, b, move, med);
-	all_med[0]++;
-	all_med[all_med[0]] = a->ar[0];
+	if (a->ar[a->len - 1] != med[0])
+	{
+		all_med[0]++;
+		all_med[all_med[0]] = a->ar[0];
+	}
 }
 
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
@@ -71,6 +74,7 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 
 	if (!(all_med = (int*)malloc(sizeof(int) * a->len)))
 			return ;
+	ft_bzero(all_med, sizeof(int) * a->len);
 	med = ft_get_med(a);
 	push_med_b(a, b, move, med);
 	all_med[1] = a->ar[a->len - 1];
@@ -78,18 +82,17 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	all_med[0] = 2;
 	while (b->len)
 		ft_len(a, b, move, all_med);
-//	while (a->ar[0] != all_med[2] && all_med[0])
-	ft_printf("MED 0 %d\n",all_med[0]);
+	while (a->ar[0] != all_med[2] && all_med[0])
 		ft_sort_three(a, b, move, all_med[--all_med[0]]);
-/*	while (b->ar[0] != all_med[1])
+	while (b->ar[0] != all_med[1])
 		do_move(pb, a, b, move);
 	all_med[2] = a->ar[0];
 	while (b->len)
 		ft_len(a, b, move, all_med);
-	ft_printf("ALL MED 0 %d\n", all_med[0]);
-	for (int i = 0; i < a->len; i++)
-		ft_printf("a %d\n", a->ar[i]);
 	while (a->ar[0] != all_med[2] && --all_med[0])
-		ft_sort_three(a, b, move, all_med[all_med[0]]);*/
+		ft_sort_three(a, b, move, all_med[all_med[0]]);
 	free(all_med);
+/*	for (int i = 0; i < a->len; i++)
+		ft_printf("a %d\n", a->ar[i]);
+	ft_printf("\n\n");*/
 }
