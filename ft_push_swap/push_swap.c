@@ -46,14 +46,14 @@ int				order_in_rev(int *act, int len)
 	return (0);
 }
 
-static void		solve(t_push_ar *a, t_push_ar *b, void (*move[11])())
+static void		solve(t_push_ar *a, t_push_ar *b)
 {
 	if ((order_in_rev(a->ar, a->len - 1) && a->ar[0] > a->ar[a->len - 1]) || a->len == 3)
-		ft_sort_easy(a, b, move);
+		ft_sort_easy(a, b);
 	else if (a->len <= 6)
-		ft_sort_bubble(a, b, move);
+		ft_sort_bubble(a, b);
 	else
-		ft_sort_hard(a, b, move);
+		ft_sort_hard(a, b);
 }
 
 int				main(int ac, char **av)
@@ -72,7 +72,7 @@ int				main(int ac, char **av)
 			free(a.ar);
 		else if (!is_list_sort(a.ar, a.len, 0))
 		{
-			solve(&a, &b, move);
+			solve(&a, &b);
 			free(a.ar);
 			free(b.ar);
 		}

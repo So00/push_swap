@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 13:35:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 13:25:00 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 22:49:07 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,11 @@ void		both_list(int move_to_do, t_push_ar *a, t_push_ar *b,
 
 }
 
-void		do_move(int move_to_do, t_push_ar *a, t_push_ar *b,
-		void (*move[11])())
+void		do_move(int move_to_do, t_push_ar *a, t_push_ar *b)
 {
+	void	(*move[11])(int **a, int **b, int *a_len, int *b_len);
+
+	ft_initialize_function(move);
 	if (move_to_do >= 0 && move_to_do <= 3)
 		a_list(move_to_do, a, b, move);
 	else if (move_to_do >= 7 && move_to_do <= 10)

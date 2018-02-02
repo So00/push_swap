@@ -22,52 +22,52 @@ int			len_to_sort(t_push_ar *a, int next_med)
 	return (i);
 }
 
-void		push_end_a(t_push_ar *a, t_push_ar *b, void (*move[11])(),
+void		push_end_a(t_push_ar *a, t_push_ar *b,
 		int next_med)
 {
 	int bug = 0;
 	if (!b->len)
 		while (a->ar[0] != next_med && ++bug < 10)
-			do_move(ra, a, b, move);
+			do_move(ra, a, b);
 	else
 	{
 		while (a->ar[0] != next_med)
 		{
 			if (!b->len || a->ar[0] < b->ar[0])
-				do_move(ra, a, b, move);
+				do_move(ra, a, b);
 			else
 			{
-				do_move(pa, a, b, move);
-				do_move(ra, a, b, move);
+				do_move(pa, a, b);
+				do_move(ra, a, b);
 			}
 		}
 		if (b->len)
 		{
-			do_move(pa, a, b, move);
-			do_move(ra, a, b, move);
+			do_move(pa, a, b);
+			do_move(ra, a, b);
 		}
 	}
 }
 
-void		ft_solve_three(t_push_ar *a, t_push_ar *b, void (*move[11])())
+void		ft_solve_three(t_push_ar *a, t_push_ar *b)
 {
 	if (a->ar[0] < a->ar[1] && a->ar[1] > a->ar[2] && a->ar[0] < a->ar[2])
 	{
-		do_move(ra, a, b, move);
-		do_move(sa, a, b, move);
+		do_move(ra, a, b);
+		do_move(sa, a, b);
 	}
 	else if (a->ar[0] > a->ar[1] && a->ar[1] < a->ar[2] && a->ar[0] < a->ar[2])
-		do_move(sa, a, b, move);
+		do_move(sa, a, b);
 	else if (a->ar[0] > a->ar[1] && a->ar[1] < a->ar[2] && a->ar[0] > a->ar[2])
-		do_move(pb, a, b, move);
+		do_move(pb, a, b);
 	else
 	{
-		do_move(pb, a, b, move);
-		do_move(sa, a, b, move);
+		do_move(pb, a, b);
+		do_move(sa, a, b);
 	}
 }
 
-void		ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])(),
+void		ft_sort_three(t_push_ar *a, t_push_ar *b,
 		int next_med)
 {
 	int		len;
@@ -76,17 +76,17 @@ void		ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 	if (len == 2)
 	{
 		if (a->ar[1] < a->ar[0])
-			do_move(sa, a, b, move);
+			do_move(sa, a, b);
 	}
 	else if (len == 3 && !is_list_sort(a->ar, len, 0))
 	{
 		if (is_list_sort(a->ar, len, 1))
 		{
-			do_move(pb, a, b, move);
-			do_move(sa, a, b, move);
+			do_move(pb, a, b);
+			do_move(sa, a, b);
 		}
 		else
-			ft_solve_three(a, b, move);
+			ft_solve_three(a, b);
 	}
-	push_end_a(a, b, move, next_med);
+	push_end_a(a, b, next_med);
 }

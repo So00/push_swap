@@ -29,7 +29,7 @@ int		ft_cmp(int a, int b)
 	return (0);
 }
 
-void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
+void	ft_sort_easy(t_push_ar *a, t_push_ar *b)
 {
 	int		stop_asc;
 
@@ -38,19 +38,19 @@ void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	{
 		if (a->len == 3 && a->ar[1] > a->ar[0] && a->ar[1] > a->ar[2]
 				&& a->ar[0] < a->ar[2])
-			do_move(sa, a, b, move);
+			do_move(sa, a, b);
 		if (a->len == 3 && a->ar[0] < a->ar[1] && a->ar[1] > a->ar[2]
 				&& a->ar[0] > a->ar[2])
-			do_move(rra, a, b, move);
+			do_move(rra, a, b);
 		if (a->ar[0] > a->ar[a->len - 1])
-			do_move(ra, a, b, move);
+			do_move(ra, a, b);
 		if (a->ar[0] > a->ar[1])
-			do_move(sa, a, b, move);
+			do_move(sa, a, b);
 	}
 	if (stop_asc > a->len - stop_asc - 2)
 		while (!is_list_sort(a->ar, a->len, 0))
-			do_move(rra, a, b, move);
+			do_move(rra, a, b);
 	else
 		while (!is_list_sort(a->ar, a->len, 0))
-			do_move(ra, a, b, move);
+			do_move(ra, a, b);
 }

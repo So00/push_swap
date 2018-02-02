@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 19:22:37 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 22:46:45 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void	ft_rrotate_b(int **a, int **b, int *a_len, int *b_len);
 void	ft_rrotate_both(int **a, int **b, int *a_len, int *b_len);
 void	ft_initialize_function(void (*apply_move[11])
 		(int **a, int **b, int *a_len, int *b_len));
-void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	do_move(int print, t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	ft_sort_bubble(t_push_ar *a, t_push_ar *b, void (*move[11])());
-void	ft_sort_three(t_push_ar *a, t_push_ar *b, void (*move[11])(),
-		int next_med);
+void	ft_sort_easy(t_push_ar *a, t_push_ar *b);
+void	ft_sort_hard(t_push_ar *a, t_push_ar *b);
+void	do_move(int print, t_push_ar *a, t_push_ar *b);
+void	ft_sort_bubble(t_push_ar *a, t_push_ar *b);
+void	ft_sort_three(t_push_ar *a, t_push_ar *b, int next_med);
 
 #endif

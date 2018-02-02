@@ -28,38 +28,38 @@ int		is_still_med(t_push_ar *act, int med, int superior)
 	return (0);
 }
 
-void	push_med_a(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med[2])
+void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 {
 	while (is_still_med(b, med[0], 1))
 		if (b->ar[0] >= med[0])
-			do_move(pa, a, b, move);
+			do_move(pa, a, b);
 		else if (b->ar[0] == med[1])
 		{
-			do_move(pa, a, b, move);
-			do_move(ra, a, b, move);
+			do_move(pa, a, b);
+			do_move(ra, a, b);
 			med[1] = ft_get_min(b, b->len);
 		}
 		else
-			do_move(rb, a, b, move);
+			do_move(rb, a, b);
 }
 
-void	push_med_b(t_push_ar *a, t_push_ar *b, void (*move[11])(), int med)
+void	push_med_b(t_push_ar *a, t_push_ar *b, int med)
 {
 	while (is_still_med(a, med, 0))
 		if (a->ar[0] <= med)
-			do_move(pb, a, b, move);
+			do_move(pb, a, b);
 		else
-			do_move(ra, a, b, move);
+			do_move(ra, a, b);
 }
 
-void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
+void	ft_len(t_push_ar *a, t_push_ar *b,
 		int *all_med)
 {
 	int		med[2];
 
 	med[0] = ft_get_highest(b);
 	med[1] = ft_get_min(b, b->len);
-	push_med_a(a, b, move, med);
+	push_med_a(a, b, med);
 	if (a->ar[a->len - 1] != med[0])
 	{
 		all_med[0]++;
@@ -67,26 +67,26 @@ void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 	}
 }
 
-void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
+void	ft_sort_hard(t_push_ar *a, t_push_ar *b)
 {
 	int		med;
 	int		all_med[a->len];
 
 	ft_bzero(all_med, sizeof(int) * a->len);
 	med = ft_get_med(a);
-	push_med_b(a, b, move, med);
+	push_med_b(a, b, med);
 	all_med[1] = a->ar[a->len - 1];
 	all_med[2] = a->ar[0];
 	all_med[0] = 2;
 	while (b->len)
-		ft_len(a, b, move, all_med);
+		ft_len(a, b, all_med);
 	while (a->ar[0] != all_med[2])
-		ft_sort_three(a, b, move, all_med[--all_med[0]]);
+		ft_sort_three(a, b, all_med[--all_med[0]]);
 	while (b->ar[0] != all_med[1])
-		do_move(pb, a, b, move);
+		do_move(pb, a, b);
 	all_med[2] = a->ar[0];
 	while (b->len)
-		ft_len(a, b, move, all_med);
+		ft_len(a, b, all_med);
 	while (a->ar[0] != all_med[2])
-		ft_sort_three(a, b, move, all_med[--all_med[0]]);
+		ft_sort_three(a, b, all_med[--all_med[0]]);
 }
