@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 16:30:17 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 20:18:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,20 @@ void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		stop_asc;
 
 	stop_asc = ft_search_stop_asc(a);
-	if (a->len > 3 && a->ar[stop_asc] < a->ar[stop_asc + 1])
+	if (a->len <= 3)
 	{
-		do_move(rra, a, b, move);
-		do_move(rra, a, b, move);
-		do_move(sa, a, b, move);
-		do_move(ra, a, b, move);
-		do_move(ra, a, b, move);
+		if (a->len == 3 && a->ar[1] > a->ar[0] && a->ar[1] > a->ar[2]
+				&& a->ar[0] < a->ar[2])
+			do_move(sa, a, b, move);
+		if (a->len == 3 && a->ar[0] < a->ar[1] && a->ar[1] > a->ar[2]
+				&& a->ar[0] > a->ar[2])
+			do_move(rra, a, b, move);
+		if (a->ar[0] > a->ar[a->len - 1])
+			do_move(ra, a, b, move);
+		if (a->ar[0] > a->ar[1])
+			do_move(sa, a, b, move);
 	}
-	else if (stop_asc > a->len - stop_asc - 2)
+	if (stop_asc > a->len - stop_asc - 2)
 		while (!is_list_sort(a->ar, a->len, 0))
 			do_move(rra, a, b, move);
 	else

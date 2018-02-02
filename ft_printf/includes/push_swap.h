@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 17:51:09 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 19:22:37 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct		s_push_ar
 {
 	int		*ar;
 	int		len;
-	int		min;
-	int		max;
 }					t_push_ar;
 
 int		ft_get_push_ar(int ac, char **av, int **ar);
@@ -43,6 +41,7 @@ int		order_in_rev(int *act, int len);
 int		ft_get_med(t_push_ar *a);
 int		ft_get_min(t_push_ar *a, int len);
 int		ft_get_highest(t_push_ar *a);
+int		is_still_med(t_push_ar *act, int med, int superior);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);

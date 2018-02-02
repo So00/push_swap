@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 14:47:57 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 22:22:35 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				order_in_rev(int *act, int len)
 
 static void		solve(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
-	if (order_in_rev(a->ar, a->len - 1))
+	if ((order_in_rev(a->ar, a->len - 1) && a->ar[0] > a->ar[a->len - 1]) || a->len == 3)
 		ft_sort_easy(a, b, move);
 	else if (a->len <= 6)
 		ft_sort_bubble(a, b, move);
