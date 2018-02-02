@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 19:17:26 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 22:24:27 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	ft_len(t_push_ar *a, t_push_ar *b, void (*move[11])(),
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 {
 	int		med;
-	int		*all_med;
+	int		all_med[a->len];
 
-	if (!(all_med = (int*)malloc(sizeof(int) * a->len)))
-			return ;
 	ft_bzero(all_med, sizeof(int) * a->len);
 	med = ft_get_med(a);
 	push_med_b(a, b, move, med);
@@ -91,5 +89,4 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 		ft_len(a, b, move, all_med);
 	while (a->ar[0] != all_med[2])
 		ft_sort_three(a, b, move, all_med[--all_med[0]]);
-	free(all_med);
 }
