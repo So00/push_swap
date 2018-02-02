@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/01 12:34:53 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 15:40:43 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	all_med[0] = 2;
 	while (b->len)
 		ft_len(a, b, move, all_med);
-	while (a->ar[0] != all_med[2] && all_med[0])
+	while (a->ar[0] != all_med[2])
 		ft_sort_three(a, b, move, all_med[--all_med[0]]);
 	while (b->ar[0] != all_med[1])
 		do_move(pb, a, b, move);
 	all_med[2] = a->ar[0];
 	while (b->len)
 		ft_len(a, b, move, all_med);
-	while (a->ar[0] != all_med[2] && --all_med[0])
-		ft_sort_three(a, b, move, all_med[all_med[0]]);
+	while (a->ar[0] != all_med[2])
+		ft_sort_three(a, b, move, all_med[--all_med[0]]);
 	free(all_med);
 /*	for (int i = 0; i < a->len; i++)
 		ft_printf("a %d\n", a->ar[i]);

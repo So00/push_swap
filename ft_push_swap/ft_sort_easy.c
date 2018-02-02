@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/01 19:26:20 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/02 16:30:17 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_sort_easy(t_push_ar *a, t_push_ar *b, void (*move[11])())
 	int		stop_asc;
 
 	stop_asc = ft_search_stop_asc(a);
-	if (a->len > 3 && a->ar[a->len - 2] > a->ar[a->len - 1])
+	if (a->len > 3 && a->ar[stop_asc] < a->ar[stop_asc + 1])
 	{
 		do_move(rra, a, b, move);
 		do_move(rra, a, b, move);
