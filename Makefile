@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/21 01:31:15 by atourner          #+#    #+#              #
-#    Updated: 2018/01/31 13:29:43 by atourner         ###   ########.fr        #
+#    Updated: 2018/02/02 23:52:46 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_PUSHSWAP = \
 		move/ft_do_move.c\
 		ft_push_swap/ft_sort_bubble.c\
 		ft_push_swap/ft_sort_three.c\
+		ft_push_swap/ft_choose_way.c\
 
 COMP_CHECKER = $(SRC_CHECKER:.c=.o)
 

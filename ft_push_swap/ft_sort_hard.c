@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 22:24:27 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/03 01:34:50 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,22 @@ int		is_still_med(t_push_ar *act, int med, int superior)
 
 void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 {
+	int		choose_way;
+
+	choose_way = ft_choose_way(b, med[0], 6);
 	while (is_still_med(b, med[0], 1))
 		if (b->ar[0] >= med[0])
+		{
 			do_move(pa, a, b);
+			choose_way = ft_choose_way(b, med[0], 6);
+		}
 		else if (b->ar[0] == med[1])
 		{
 			do_move(pa, a, b);
-			do_move(ra, a, b);
+			if (choose_way == rb && b->ar[0] < med[0])
+				do_move(rr, a, b);
+			else
+				do_move(ra, a, b);
 			med[1] = ft_get_min(b, b->len);
 		}
 		else
@@ -46,14 +55,15 @@ void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 void	push_med_b(t_push_ar *a, t_push_ar *b, int med)
 {
 	while (is_still_med(a, med, 0))
+	{
 		if (a->ar[0] <= med)
 			do_move(pb, a, b);
 		else
 			do_move(ra, a, b);
+	}
 }
 
-void	ft_len(t_push_ar *a, t_push_ar *b,
-		int *all_med)
+void	ft_len(t_push_ar *a, t_push_ar *b, int all_med[a->len])
 {
 	int		med[2];
 
@@ -82,8 +92,7 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b)
 		ft_len(a, b, all_med);
 	while (a->ar[0] != all_med[2])
 		ft_sort_three(a, b, all_med[--all_med[0]]);
-	while (b->ar[0] != all_med[1])
-		do_move(pb, a, b);
+	ft_push_in_b(a, b, all_med[1]);
 	all_med[2] = a->ar[0];
 	while (b->len)
 		ft_len(a, b, all_med);

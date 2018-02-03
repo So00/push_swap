@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 22:46:45 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/03 01:22:00 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_get_med(t_push_ar *a);
 int		ft_get_min(t_push_ar *a, int len);
 int		ft_get_highest(t_push_ar *a);
 int		is_still_med(t_push_ar *act, int med, int superior);
+int		ft_choose_way(t_push_ar *a, int med, int add);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);
@@ -61,5 +62,6 @@ void	ft_sort_hard(t_push_ar *a, t_push_ar *b);
 void	do_move(int print, t_push_ar *a, t_push_ar *b);
 void	ft_sort_bubble(t_push_ar *a, t_push_ar *b);
 void	ft_sort_three(t_push_ar *a, t_push_ar *b, int next_med);
+void	ft_push_in_b(t_push_ar *a, t_push_ar *b, int med);
 
 #endif
