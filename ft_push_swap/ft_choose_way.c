@@ -6,13 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 23:45:16 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/03 01:34:52 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 11:50:37 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_choose_way(t_push_ar *a, int med, int add)
+int		ft_choose_way(t_push_ar *a, int med)
 {
 	int		i;
 
@@ -20,10 +20,10 @@ int		ft_choose_way(t_push_ar *a, int med, int add)
 	while (i < a->len - 1)
 	{
 		if (a->ar[i] >= med)
-			return (i <= a->len / 2 ? ra + add : rra + add);
+			return (i <= a->len / 2 ? rb : rrb);
 		i++;
 	}
-	return (rra + add);
+	return (rrb);
 }
 
 void	ft_push_in_b(t_push_ar *a, t_push_ar *b, int med)

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/03 01:34:50 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 11:47:14 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 {
 	int		choose_way;
 
-	choose_way = ft_choose_way(b, med[0], 6);
+	choose_way = ft_choose_way(b, med[0]);
 	while (is_still_med(b, med[0], 1))
 		if (b->ar[0] >= med[0])
 		{
 			do_move(pa, a, b);
-			choose_way = ft_choose_way(b, med[0], 6);
+			choose_way = ft_choose_way(b, med[0]);
 		}
 		else if (b->ar[0] == med[1])
 		{
@@ -49,7 +49,7 @@ void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 			med[1] = ft_get_min(b, b->len);
 		}
 		else
-			do_move(rb, a, b);
+			do_move(choose_way, a, b);
 }
 
 void	push_med_b(t_push_ar *a, t_push_ar *b, int med)

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/03 01:22:00 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 11:48:26 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_get_med(t_push_ar *a);
 int		ft_get_min(t_push_ar *a, int len);
 int		ft_get_highest(t_push_ar *a);
 int		is_still_med(t_push_ar *act, int med, int superior);
-int		ft_choose_way(t_push_ar *a, int med, int add);
+int		ft_choose_way(t_push_ar *a, int med);
 
 void	ft_push_a(int **a, int **b, int *a_len, int *b_len);
 void	ft_push_b(int **a, int **b, int *a_len, int *b_len);
