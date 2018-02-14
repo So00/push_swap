@@ -38,19 +38,19 @@ void	ft_sort_easy(t_push_ar *a, t_push_ar *b)
 	{
 		if (a->len == 3 && a->ar[1] > a->ar[0] && a->ar[1] > a->ar[2]
 				&& a->ar[0] < a->ar[2])
-			do_move(sa, a, b);
+			do_move(SA, a, b);
 		if (a->len == 3 && a->ar[0] < a->ar[1] && a->ar[1] > a->ar[2]
 				&& a->ar[0] > a->ar[2])
-			do_move(rra, a, b);
+			do_move(RRA, a, b);
 		if (a->ar[0] > a->ar[a->len - 1])
-			do_move(ra, a, b);
+			do_move(RA, a, b);
 		if (a->ar[0] > a->ar[1])
-			do_move(sa, a, b);
+			do_move(SA, a, b);
 	}
 	if (stop_asc > a->len - stop_asc - 2)
 		while (!is_list_sort(a->ar, a->len, 0))
-			do_move(rra, a, b);
+			do_move(RRA, a, b);
 	else
 		while (!is_list_sort(a->ar, a->len, 0))
-			do_move(ra, a, b);
+			do_move(RA, a, b);
 }

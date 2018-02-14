@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_push_a.c                                   :+:      :+:    :+:   */
+/*   ft_get_push_ar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atourner <mavin@42.fr>                    +#+  +:+       +#+        */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/20 17:19:16 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/31 13:39:30 by atourner         ###   ########.fr       */
+/*   Created: 2018/02/12 14:22:22 by atourner          #+#    #+#             */
+/*   Updated: 2018/02/14 19:17:01 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	check_max_and_min_int(char *str, char *stat)
 	while (stat[++len])
 		if (!ft_isdigit(stat[len]))
 			return (0);
+	if (len > 10)
+		return (0);
 	if (len == 10)
 	{
 		if (*str == '-' && ft_strcmp(stat, min) > 0)
@@ -38,13 +40,29 @@ static int	check_nb(char *str)
 
 	if (*str != '-' && *str != '+' && !ft_isdigit(*str))
 		return (0);
-	if (((*str == '-'|| *str == '+') && (tmp = ft_skip_char(&str[1], '0')))
+	if (((*str == '-' || *str == '+') && (tmp = ft_skip_char(&str[1], '0')))
 			|| (ft_isdigit(*str) && (tmp = ft_skip_char(str, '0'))))
 	{
 		if ((ft_isdigit(*tmp) && check_max_and_min_int(str, tmp)) || !*tmp)
 			return (1);
 	}
 	return (0);
+}
+
+static int	check_double(int *a, int len)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < len)
+	{
+		j = i;
+		while (++j < len)
+			if (a[i] == a[j])
+				return (0);
+	}
+	return (1);
 }
 
 static int	*valid_av(int ac, char **av, int *len_a)
@@ -80,7 +98,7 @@ int			ft_get_push_ar(int ac, char **av, int **a)
 	int		a_len;
 
 	a_len = 0;
-	if (!(*a = valid_av(ac, av, &a_len)))
+	if (!(*a = valid_av(ac, av, &a_len)) || !check_double(*a, a_len))
 		return (0);
 	return (a_len);
 }

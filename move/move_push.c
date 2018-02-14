@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:41:41 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/21 01:18:28 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:50:14 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_push_a(int **a, int **b, int *a_len, int *b_len)
 	}
 }
 
-void	ft_push_b(int **a, int **b, int *a_len ,int *b_len)
+void	ft_push_b(int **a, int **b, int *a_len, int *b_len)
 {
 	int		i;
 

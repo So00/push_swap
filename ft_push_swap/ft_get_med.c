@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 19:00:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/01 11:58:51 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:05:45 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			ft_get_highest(t_push_ar *a)
 	return (i);
 }
 
-int		ft_get_min(t_push_ar *a, int len)
+int			ft_get_min(t_push_ar *a, int len)
 {
 	int		i;
 	int		min;

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/12 11:47:14 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 15:26:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 	while (is_still_med(b, med[0], 1))
 		if (b->ar[0] >= med[0])
 		{
-			do_move(pa, a, b);
+			do_move(PA, a, b);
 			choose_way = ft_choose_way(b, med[0]);
 		}
 		else if (b->ar[0] == med[1])
 		{
-			do_move(pa, a, b);
-			if (choose_way == rb && b->ar[0] < med[0])
-				do_move(rr, a, b);
+			do_move(PA, a, b);
+			if (choose_way == RB && b->ar[0] < med[0])
+				do_move(RR, a, b);
 			else
-				do_move(ra, a, b);
+				do_move(RA, a, b);
 			med[1] = ft_get_min(b, b->len);
 		}
 		else
@@ -57,9 +57,9 @@ void	push_med_b(t_push_ar *a, t_push_ar *b, int med)
 	while (is_still_med(a, med, 0))
 	{
 		if (a->ar[0] <= med)
-			do_move(pb, a, b);
+			do_move(PB, a, b);
 		else
-			do_move(ra, a, b);
+			do_move(RA, a, b);
 	}
 }
 

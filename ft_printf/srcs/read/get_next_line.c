@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 12:16:47 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/20 23:02:45 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:57:13 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		cpy_save(t_sav_str *act, char **file_read)
 	act->len = 0;
 }
 
-char			*ft_cpy_malloc(char *str, char c, int fre)
+static char		*ft_cpy_malloc(char *str, char c, int fre)
 {
 	char	*new;
 	int		i;
@@ -57,6 +57,13 @@ char			*ft_cpy_malloc(char *str, char c, int fre)
 	return (new);
 }
 
+static int		exit_gnl(char **to_free, char **line)
+{
+	free(*to_free);
+	*line = NULL;
+	return (0);
+}
+
 int				get_next_line(const int fd, char **line)
 {
 	char				*file_read;
@@ -64,7 +71,7 @@ int				get_next_line(const int fd, char **line)
 	char				buff[BUFF_SIZE + 1];
 	static t_sav_str	save[4865];
 
-	if (!(file_read = ft_strnew(BUFF_SIZE + 1)) || fd < 0 || !line || fd > 4864)
+	if (fd < 0 || !line || fd > 4864 || !(file_read = ft_strnew(BUFF_SIZE + 1)))
 		return (-1);
 	if (save[fd].len)
 		cpy_save(&save[fd], &file_read);
@@ -72,12 +79,7 @@ int				get_next_line(const int fd, char **line)
 		if (d < 0 || !(file_read = ft_cpy_realloc(buff, d, file_read)))
 			return (-1);
 	if (!file_read[0] && d == 0)
-	{
-		if (file_read)
-			free(file_read);
-		*line = NULL;
-		return (0);
-	}
+		return (exit_gnl(&file_read, line));
 	if ((*line = ft_strchr(file_read, '\n')))
 	{
 		if (!(save[fd].buff = ft_cpy_malloc(&line[0][1], '\0', 0)))

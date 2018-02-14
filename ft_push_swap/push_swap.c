@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 22:22:35 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/14 15:09:28 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int				order_in_rev(int *act, int len)
 
 static void		solve(t_push_ar *a, t_push_ar *b)
 {
-	if ((order_in_rev(a->ar, a->len - 1) && a->ar[0] > a->ar[a->len - 1]) || a->len == 3)
+	if ((order_in_rev(a->ar, a->len - 1)
+				&& a->ar[0] > a->ar[a->len - 1]) || a->len == 3)
 		ft_sort_easy(a, b);
 	else if (a->len <= 6)
 		ft_sort_bubble(a, b);
@@ -68,16 +69,16 @@ int				main(int ac, char **av)
 		ft_printf("Error\n");
 	else
 	{
-		if (!(b.ar = (int*)malloc(sizeof(int) * a.len)))
-			free(a.ar);
-		else if (!is_list_sort(a.ar, a.len, 0))
+		b.ar = (int*)malloc(sizeof(int) * a.len);
+		if (b.ar && !is_list_sort(a.ar, a.len, 0))
 		{
 			solve(&a, &b);
-			free(a.ar);
-			free(b.ar);
 		}
 		else
 			ft_printf("\n");
+		free(a.ar);
+		if (b.ar)
+			free(b.ar);
 	}
 	return (0);
 }

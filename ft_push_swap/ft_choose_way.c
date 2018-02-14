@@ -20,10 +20,10 @@ int		ft_choose_way(t_push_ar *a, int med)
 	while (i < a->len - 1)
 	{
 		if (a->ar[i] >= med)
-			return (i <= a->len / 2 ? rb : rrb);
+			return (i <= a->len / 2 ? RB : RRB);
 		i++;
 	}
-	return (rrb);
+	return (RRB);
 }
 
 void	ft_push_in_b(t_push_ar *a, t_push_ar *b, int med)
@@ -42,10 +42,10 @@ void	ft_push_in_b(t_push_ar *a, t_push_ar *b, int med)
 		}
 		if (a->ar[0] == min)
 		{
-			do_move(ra, a, b);
+			do_move(RA, a, b);
 			len = -1;
 		}
 		else
-			do_move(pb, a, b);
+			do_move(PB, a, b);
 	}
 }

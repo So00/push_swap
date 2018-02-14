@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/21 01:31:15 by atourner          #+#    #+#              #
-#    Updated: 2018/02/02 23:52:46 by atourner         ###   ########.fr        #
+#    Updated: 2018/02/12 15:57:12 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,19 +49,20 @@ COMP_CHECKER = $(SRC_CHECKER:.c=.o)
 
 COMP_PUSHSWAP = $(SRC_PUSHSWAP:.c=.o)
 
-all : $(NAME_PUSH) $(NAME_CHECK)
+all : LIB $(NAME_PUSH) $(NAME_CHECK)
 
 %.o:%.c
 	@gcc $(FLAGS) -o $@ -c $< -I$(INCLUDES)
 
-$(NAME_CHECK) : $(COMP_CHECKER)
-	@echo "\033[0;35mCompilation des fichiers checker finies\033[0m"
+LIB :
 	@make -C ft_printf
+
+$(NAME_CHECK) : $(COMP_CHECKER)
+	@echo "\033[0;35mCompilation Checker\033[0m"
 	@gcc $(FLAGS) $(COMP_CHECKER) $(LIB) -o $(NAME_CHECK)
 
 $(NAME_PUSH) : $(COMP_PUSHSWAP)
-	@echo "\033[0;35mCompilation des fichiers push_swap finies\033[0m"
-	@make -C ft_printf
+	@echo "\033[0;35mCompilation Push_swap\033[0m"
 	@gcc $(FLAGS) $(COMP_PUSHSWAP) $(LIB) -o $(NAME_PUSH)
 
 clean :

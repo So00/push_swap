@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/01/21 05:26:34 by atourner         ###   ########.fr        #
+#    Updated: 2018/02/12 15:52:34 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,18 +115,19 @@ all : $(NAME)
 	@gcc $(FLAGS) -o $@ -c $< -Iincludes
 
 $(NAME) : $(COMP_NAME)
-	@echo "\033[0;35mCompilation des fichiers finies\033[0m"
-	@echo "\033[0;33mCompilation de la librairie\033[0m"
+	@echo "\033[0;35mError detected in library\033[0m"
+	@sleep 2
+	@echo "\033[0;33mFixed\033[0m"
 	@ar rc $(NAME) $(COMP_NAME)
 	@ranlib $(NAME)
 	@echo "\033[0;35mCompilation de la librairie finie\033[0m"
 
 clean :
-	@echo "\033[0;31mSuppression des fichiers compilés\033[0m"
+	@echo "\033[0;31mPiou piou partially erased zone\033[0m"
 	@rm -f $(COMP_NAME)
 
 fclean : clean
-	@echo "\033[0;31mSuppression de la librairie\033[0m"
+	@echo "\033[0;31mPiou piou sector clear\033[0m"
 	@rm -f $(NAME)
 
 re : recompil fclean all
