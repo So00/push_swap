@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:21:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 15:19:21 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:08:33 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_end_test(int **a, int **b, int a_len, int b_len)
 	return (1);
 }
 
-int			ft_choose_move(char *str)
+static int	ft_choose_move(char *str)
 {
 	static char	move[11][4] = {{"pa\0"}, {"sa\0"}, {"ra\0"}, {"rra\0"},
 		{"rr\0"}, {"ss\0"}, {"rrr\0"}, {"rrb\0"}, {"rb\0"}, {"sb\0"}, {"pb\0"}};

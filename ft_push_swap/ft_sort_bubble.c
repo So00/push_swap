@@ -6,13 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:43:13 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 15:58:12 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:10:48 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort_b(t_push_ar *a, t_push_ar *b)
+static void	sort_b(t_push_ar *a, t_push_ar *b)
 {
 	if (b->len == 3)
 	{
@@ -28,7 +28,7 @@ void		sort_b(t_push_ar *a, t_push_ar *b)
 		do_move(PA, a, b);
 }
 
-void		sort_a(t_push_ar *a, t_push_ar *b)
+static void	sort_a(t_push_ar *a, t_push_ar *b)
 {
 	if (a->len == 3)
 	{

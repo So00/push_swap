@@ -6,13 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 19:00:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 20:07:16 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:09:50 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_insert(int *ar, int nb_add, int start)
+static void	ft_insert(int *ar, int nb_add, int start)
 {
 	while (--start != -1)
 	{

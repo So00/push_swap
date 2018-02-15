@@ -6,13 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/21 04:41:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 20:18:24 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:12:19 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_search_stop_asc(t_push_ar *a)
+int			ft_search_stop_asc(t_push_ar *a)
 {
 	int		search;
 
@@ -22,14 +22,14 @@ int		ft_search_stop_asc(t_push_ar *a)
 	return (search);
 }
 
-int		ft_cmp(int a, int b)
+static int	ft_cmp(int a, int b)
 {
 	if (a > b)
 		return (1);
 	return (0);
 }
 
-void	ft_sort_easy(t_push_ar *a, t_push_ar *b)
+void		ft_sort_easy(t_push_ar *a, t_push_ar *b)
 {
 	int		stop_asc;
 

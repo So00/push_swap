@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 16:02:11 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 20:13:15 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		is_still_med(t_push_ar *act, int med, int superior)
 	return (0);
 }
 
-void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
+static void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 {
 	int		choose_way;
 
@@ -52,7 +52,7 @@ void	push_med_a(t_push_ar *a, t_push_ar *b, int med[2])
 			do_move(choose_way, a, b);
 }
 
-void	push_med_b(t_push_ar *a, t_push_ar *b, int med, int next_med)
+static void	push_med_b(t_push_ar *a, t_push_ar *b, int med, int next_med)
 {
 	while (is_still_med(a, med, 0))
 	{
