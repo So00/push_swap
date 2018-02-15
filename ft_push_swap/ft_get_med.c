@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 19:00:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/12 16:05:45 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:10:16 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ft_insert(int *ar, int nb_add, int start)
 	}
 }
 
-int			ft_get_med(t_push_ar *a)
+int			ft_get_med(t_push_ar *a, int *next_med)
 {
 	int		*sort_ar;
 	int		i;
@@ -49,35 +49,8 @@ int			ft_get_med(t_push_ar *a)
 		i++;
 	}
 	i = sort_ar[(a->len / 2) - (a->len % 2 ? 0 : 1)];
-	free(sort_ar);
-	return (i);
-}
-
-int			ft_get_highest(t_push_ar *a)
-{
-	int		*sort_ar;
-	int		i;
-
-	if (!(sort_ar = (int*)ft_strnew(sizeof(int) * a->len)))
-		return (-1);
-	i = 0;
-	while (i != a->len)
-	{
-		if (i == 0)
-			sort_ar[i] = a->ar[i];
-		else
-		{
-			if (a->ar[i] > sort_ar[i - 1])
-				sort_ar[i] = a->ar[i];
-			else
-				ft_insert(sort_ar, a->ar[i], i);
-		}
-		i++;
-	}
-	if (a->len >= 3)
-		i = sort_ar[a->len - 3];
-	else
-		i = sort_ar[0];
+	if (next_med)
+		*next_med = sort_ar[a->len / 4];
 	free(sort_ar);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:26 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 10:26:10 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:56:06 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int					ft_is_sort_checker(int *a, int a_len);
 int					free_all(int **a, int **b, char **tmp);
 int					is_list_sort(int *act, int len, int descending);
 int					order_in_rev(int *act, int len);
-int					ft_get_med(t_push_ar *a);
+int					ft_get_med(t_push_ar *a, int *next_med);
 int					ft_get_min(t_push_ar *a, int len);
 int					ft_get_highest(t_push_ar *a);
 int					is_still_med(t_push_ar *act, int med, int superior);

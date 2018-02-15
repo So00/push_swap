@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:43:13 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 22:23:38 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:58:12 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		ft_sort_bubble(t_push_ar *a, t_push_ar *b)
 {
 	int		med;
 
-	med = ft_get_med(a);
+	med = ft_get_med(a, NULL);
 	while (is_still_med(a, med, 0))
 		if (a->ar[0] <= med)
 			do_move(PB, a, b);
