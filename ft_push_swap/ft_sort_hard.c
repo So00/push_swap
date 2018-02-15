@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/12 15:26:24 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 14:11:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	push_med_b(t_push_ar *a, t_push_ar *b, int med)
 	}
 }
 
-void	ft_len(t_push_ar *a, t_push_ar *b, int all_med[a->len])
+void	ft_len(t_push_ar *a, t_push_ar *b, int *all_med)
 {
 	int		med[2];
 
-	med[0] = ft_get_highest(b);
+	med[0] = ft_get_med(b);
 	med[1] = ft_get_min(b, b->len);
 	push_med_a(a, b, med);
 	if (a->ar[a->len - 1] != med[0])
@@ -80,22 +80,22 @@ void	ft_len(t_push_ar *a, t_push_ar *b, int all_med[a->len])
 void	ft_sort_hard(t_push_ar *a, t_push_ar *b)
 {
 	int		med;
-	int		all_med[a->len];
+	int		*all_med;
 
-	ft_bzero(all_med, sizeof(int) * a->len);
+	all_med = (int*)ft_strnew(sizeof(int) * a->len);
 	med = ft_get_med(a);
 	push_med_b(a, b, med);
 	all_med[1] = a->ar[a->len - 1];
 	all_med[2] = a->ar[0];
 	all_med[0] = 2;
-	while (b->len)
+	while (b->len > 3)
 		ft_len(a, b, all_med);
-	while (a->ar[0] != all_med[2])
-		ft_sort_three(a, b, all_med[--all_med[0]]);
-	ft_push_in_b(a, b, all_med[1]);
+	while (a->ar[0] != all_med[2] || b->len)
+		ft_sort_three(a, b, all_med);
+	ft_push_in_b(a, b, ft_get_min(a, a->len));
 	all_med[2] = a->ar[0];
-	while (b->len)
+	while (b->len > 3)
 		ft_len(a, b, all_med);
 	while (a->ar[0] != all_med[2])
-		ft_sort_three(a, b, all_med[--all_med[0]]);
+		ft_sort_three(a, b, all_med);
 }

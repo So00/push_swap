@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/14 15:09:28 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 11:10:28 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ int				main(int ac, char **av)
 	{
 		b.ar = (int*)malloc(sizeof(int) * a.len);
 		if (b.ar && !is_list_sort(a.ar, a.len, 0))
-		{
 			solve(&a, &b);
-		}
 		else
 			ft_printf("\n");
 		free(a.ar);
