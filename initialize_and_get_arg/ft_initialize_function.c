@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 23:41:12 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/02 22:32:34 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:12:28 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			free_all(int **a, int **b, char **tmp)
 		free(*b);
 	if (tmp)
 		free(*tmp);
-	return (0);
+	return (-1);
 }
 
 void		ft_initialize_function(void (*apply_move[11])())

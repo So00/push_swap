@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:21:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/12 14:38:40 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/15 15:19:21 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@ static int	ft_end_test(int **a, int **b, int a_len, int b_len)
 	int		ret;
 
 	if (b_len)
-		return (free_all(a, b, NULL));
+	{
+		free_all(a, b, NULL);
+		return (0);
+	}
 	ret = -1;
 	while (++ret < a_len - 1)
 		if ((*a)[ret] > (*a)[ret + 1])
-			return (free_all(a, b, NULL));
+		{
+			free_all(a, b, NULL);
+			return (0);
+		}
 	free(*a);
 	free(*b);
 	return (1);
@@ -59,6 +65,5 @@ int			ft_is_sort_checker(int *a, int a_len)
 			return (free_all(&a, &b, &tmp));
 		free(tmp);
 	}
-	free(tmp);
 	return (ft_end_test(&a, &b, a_len, b_len));
 }
