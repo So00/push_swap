@@ -6,13 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 20:13:15 by atourner         ###   ########.fr       */
+/*   Updated: 2018/02/16 09:45:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		is_still_med(t_push_ar *act, int med, int superior)
+int			is_still_med(t_push_ar *act, int med, int superior)
 {
 	int		i;
 
@@ -65,7 +65,7 @@ static void	push_med_b(t_push_ar *a, t_push_ar *b, int med, int next_med)
 	}
 }
 
-void	ft_len(t_push_ar *a, t_push_ar *b, int *all_med)
+void		ft_len(t_push_ar *a, t_push_ar *b, int *all_med)
 {
 	int		med[2];
 
@@ -79,7 +79,7 @@ void	ft_len(t_push_ar *a, t_push_ar *b, int *all_med)
 	}
 }
 
-void	ft_sort_hard(t_push_ar *a, t_push_ar *b)
+void		ft_sort_hard(t_push_ar *a, t_push_ar *b)
 {
 	int		med;
 	int		*all_med;
