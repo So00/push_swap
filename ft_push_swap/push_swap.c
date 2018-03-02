@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 22:42:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 11:10:28 by atourner         ###   ########.fr       */
+/*   Updated: 2018/03/02 10:46:27 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ static void		solve(t_push_ar *a, t_push_ar *b)
 
 int				main(int ac, char **av)
 {
-	void		(*move[11])(int **, int **, int *, int *);
 	t_push_ar	a;
 	t_push_ar	b;
 
 	b.len = 0;
-	ft_initialize_function(move);
-	if (!(a.len = ft_get_push_ar(ac, av, &a.ar)) && ac != 1)
+	if (ac == 1 || !(a.len = ft_get_push_ar(ac, av, &a.ar)))
 		ft_printf("Error\n");
 	else
 	{
