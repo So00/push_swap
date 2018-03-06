@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 19:35:29 by atourner          #+#    #+#             */
-/*   Updated: 2018/01/20 19:35:36 by atourner         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:24:47 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ char	*ft_skip_char(char *str, char c)
 	ret = str;
 	while (*ret && (*ret == c))
 		ret++;
+	if (!*ret)
+		return (str);
 	return (ret);
 }

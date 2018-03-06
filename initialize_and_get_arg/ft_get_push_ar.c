@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:22:22 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/14 18:41:16 by atourner         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:27:48 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,24 @@ static int	check_max_and_min_int(char *str, char *stat)
 	return (1);
 }
 
-static int	check_nb(char *str)
+static int	check_nb(char **str)
 {
 	char	*tmp;
+	int		i;
 
-	if (*str != '-' && *str != '+' && !ft_isdigit(*str))
-		return (0);
-	if (((*str == '-' || *str == '+') && (tmp = ft_skip_char(&str[1], '0')))
-			|| (ft_isdigit(*str) && (tmp = ft_skip_char(str, '0'))))
+	i = -1;
+	while (str[++i])
 	{
-		if ((ft_isdigit(*tmp) && check_max_and_min_int(str, tmp)) || !*tmp)
-			return (1);
+		if (str[i][0] != '-' && str[i][0] != '+' && !ft_isdigit(str[i][0]))
+			return (0);
+		if (((str[i][0] == '-' || str[i][0] == '+')
+		&& (tmp = ft_skip_char(&str[i][1], '0')))
+		|| ((tmp = ft_skip_char(str[i], '0'))))
+			if (!(ft_isdigit(*tmp) && check_max_and_min_int(str[i], tmp))
+					|| !*tmp)
+				return (0);
 	}
-	return (0);
+	return (i);
 }
 
 static int	check_double(int *a, int len)
@@ -60,7 +65,10 @@ static int	check_double(int *a, int len)
 		j = i;
 		while (++j < len)
 			if (a[i] == a[j])
+			{
+				free(a);
 				return (0);
+			}
 	}
 	return (1);
 }
@@ -72,22 +80,23 @@ static int	*valid_av(int ac, char **av, int *len_a)
 	int		j;
 	char	**tmp_a;
 
-	i = (ac == 2 ? -1 : 0);
+	i = 0;
 	a = NULL;
 	if (ac == 2)
 		tmp_a = ft_strsplit_space(av[1]);
 	else
-		tmp_a = av;
-	while (tmp_a[++i])
-		if (!check_nb(tmp_a[i]))
-			return (NULL);
-	if (!(a = malloc(sizeof(int) * i)))
-		return (NULL);
-	*len_a = (ac == 2 ? i : i - 1);
-	i = (ac == 2 ? -1 : 0);
-	j = -1;
-	while (tmp_a[++i])
-		a[++j] = ft_atoi(tmp_a[i]);
+		tmp_a = &av[1];
+	if ((i = check_nb(tmp_a)))
+	{
+		if ((a = malloc(sizeof(int) * i)))
+		{
+			*len_a = i;
+			i = -1;
+			j = -1;
+			while (tmp_a[++i])
+				a[++j] = ft_atoi(tmp_a[i]);
+		}
+	}
 	if (ac == 2)
 		ft_free_ar((void**)tmp_a);
 	return (a);

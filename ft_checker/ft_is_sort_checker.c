@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:21:11 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/15 20:08:33 by atourner         ###   ########.fr       */
+/*   Updated: 2018/03/06 13:31:04 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int			ft_is_sort_checker(int *a, int a_len)
 			return (free_all(&a, &b, &tmp));
 		free(tmp);
 	}
+	free(tmp);
 	return (ft_end_test(&a, &b, a_len, b_len));
 }

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 20:27:25 by atourner          #+#    #+#             */
-/*   Updated: 2018/02/16 09:47:01 by atourner         ###   ########.fr       */
+/*   Updated: 2018/03/06 11:23:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,5 @@ void		ft_sort_hard(t_push_ar *a, t_push_ar *b)
 		ft_len(a, b, all_med);
 	while (a->ar[0] != all_med[2])
 		ft_sort_three(a, b, all_med);
+	free(all_med);
 }
